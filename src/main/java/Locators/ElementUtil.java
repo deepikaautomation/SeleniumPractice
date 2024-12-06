@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ElementUtil {
@@ -65,6 +66,23 @@ public class ElementUtil {
 		Select select=new Select(getElement(locator));
 		select.selectByVisibleText(text);
 
+	}
+	
+	
+	//*************ActionSendKeys
+	
+	public  void doActionSendKeys(By locator,String text) {
+		Actions act=new Actions(driver);
+		
+		act.sendKeys(getElement(locator),text).build().perform();
+		
+	}
+	
+	public  void doActionClick(By locator) {
+		Actions act=new Actions(driver);
+		
+		act.click(getElement(locator)).build().perform();
+		
 	}
 
 }

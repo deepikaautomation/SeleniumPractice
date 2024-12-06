@@ -31,14 +31,16 @@ public class AlertJSPopup {
 	}
 		
 	//confirm
+	Thread.sleep(10000);
 	
 	driver.findElement(By.id("confirmexample")).click();
 	
 	Alert alert1=driver.switchTo().alert();
 	System.out.println(alert1.getText());
 	alert1.accept();
+	
 	 
-	Thread.sleep(3000);
+	Thread.sleep(10000);
 	//prompt
 	driver.findElement(By.id("promptexample")).click();
 	Alert alert2=driver.switchTo().alert();
