@@ -25,7 +25,7 @@ public class ActionsClickSendKeys {
 		By ln=	By.id("input-lastname");
 		By continueBtn=By.cssSelector("input[type='submit']");
 		
-		//Actions act=new Actions(driver);
+		Actions act=new Actions(driver);
 		
 		//act.sendKeys(driver.findElement(fn), "naveen").build().perform();
 		//act.sendKeys(driver.findElement(ln),"automation").build().perform();
@@ -33,6 +33,7 @@ public class ActionsClickSendKeys {
 		doActionSendKeys(fn, "naveen");
 		doActionSendKeys(ln, "automation");
 		doActionClick(continueBtn);
+		
 		
 		
 	}

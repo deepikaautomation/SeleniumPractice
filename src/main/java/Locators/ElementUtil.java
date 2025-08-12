@@ -1,12 +1,19 @@
 package Locators;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementUtil {
 
@@ -20,6 +27,14 @@ public class ElementUtil {
 	public  WebElement getElement(By locator) {
 
 		return driver.findElement(locator);
+
+	}
+	
+	public  WebElement getElement(By locator,int timeOut) {
+
+		//return driver.findElement(locator);
+		
+		return waitUntilVisible(locator, timeOut);
 
 	}
 
@@ -82,6 +97,161 @@ public class ElementUtil {
 		Actions act=new Actions(driver);
 		
 		act.click(getElement(locator)).build().perform();
+		
+	}
+	
+	//********Wait Utils***************
+	
+	/*An expectation for checking that an element is present on the DOM of a page. 
+	 * This does notnecessarily mean that the element is visible.*
+	 * @param locator
+	 * @param timeOut
+	 * @return
+	 */
+	public  WebElement waitUntilPresenceofElement(By locator, int timeOut) {
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		
+	}
+	
+	
+	/*An expectation for checking that an element is present on the DOM of a page and visible.
+	 * Visibility means that the element is not only displayed but also has a height and width that isgreater than 0.*
+	 * @param locator
+	 * @param timeOut
+	 * @return
+	 */
+	public  WebElement waitUntilVisible(By locator, int timeOut) {
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		
+	}
+	
+	
+	public  Alert waitForAlertIsPresent(int timeOuts) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(timeOuts));
+		return wait.until(ExpectedConditions.alertIsPresent());
+		
+	}
+	
+	public  String alertGetText(int timeOuts) {
+		return waitForAlertIsPresent(timeOuts).getText();
+		
+		
+	}
+	
+	public  void acceptAlert(int timeOuts) {
+		waitForAlertIsPresent(timeOuts).accept();
+		
+		
+	}
+	
+	public  void dismissAlert(int timeOuts) {
+		waitForAlertIsPresent(timeOuts).dismiss();
+		
+		
+	}
+	
+	public  String waitForTitleContainsandFetch(int timeouts,String fractionofText) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.titleContains(fractionofText));
+		return driver.getTitle();
+	}
+	
+	public  String waitForTitleIsandFetch(int timeouts,String text) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.titleIs(text));
+		return driver.getTitle();
+	}
+	
+	public  String waitForUrlContainsandFetch(int timeouts,String fractionofUrl) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.urlContains(fractionofUrl));
+		return driver.getCurrentUrl();
+	}
+	
+	public  Boolean waitForUrlIsandFetch(int timeouts,String fractionofUrl) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		return wait.until(ExpectedConditions.urlContains(fractionofUrl));
+		
+	}
+
+	/**
+	 * 
+	 * @param timeouts
+	 * @param url
+	 * @return
+	 */
+
+	public  String waitForUrlandFetch(int timeouts,String url) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.urlToBe(url);
+		return driver.getCurrentUrl();
+	}
+	
+	
+	public  List<WebElement> waitpresenceOfAllElements(int timeOut, By locator) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+		
+	}
+	
+	public  List<WebElement> waitvisibilityOfAllElements(int timeOut, By locator) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+		
+	}
+	public  void waitframeToBeAvailable(int timeOut, By locator) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(timeOut));
+		
+		
+		 wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
+		
+	}
+	
+	public  void waitframewithNameToBeAvailable(int timeOut, String frameName) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(timeOut));
+		
+		
+		 wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameName));
+		
+	}
+	
+	/*elementToBeClickable-An expectation for checking an element is visible and enabled such that you can click it.*
+	 * 
+	 * @param locator
+	 * @param timeOut
+	 */
+	public  void clickWhenReady(By locator,int timeOut) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(timeOut));
+		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+		
+	}
+	
+	public  WebElement waitForElementToBeClicakable(By locator,int timeOut) {
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(timeOut));
+	    return  wait.until(ExpectedConditions.elementToBeClickable(locator));
+		
+	}
+	
+	public void doClickActionsAndWait(By locator,int timeOut) {
+		WebElement ele=waitForElementToBeClicakable(locator,timeOut);
+		Actions act=new Actions(driver);
+		act.click(ele).build().perform();
+		
+	}
+	
+	
+public  WebElement waitForElementtoClickablewithFluentWait(int timeOut,int pollingTime,By locator) {
+		
+		Wait<WebDriver> wait=new FluentWait<WebDriver>(driver)
+	            
+	            .withTimeout(Duration.ofSeconds(timeOut))
+	            .ignoring(NoSuchElementException.class)
+	            .ignoring(NoClassDefFoundError.class)
+	            .pollingEvery(Duration.ofSeconds(pollingTime))
+	            .withMessage("...not found...");
+          return wait.until(ExpectedConditions.elementToBeClickable(locator));
 		
 	}
 

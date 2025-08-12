@@ -23,8 +23,12 @@ public class LocatorsConcept {
 		//driver.findElement(By.id("input-password")).sendKeys("naveen@123");
 		
 		
+		
+		
 		By img=By.cssSelector("img.img-responsive");
 	    By search=By.name("search");
+	    
+	    
 		
 		
 		By emailId=By.id("input-email");

@@ -18,6 +18,7 @@ public class CricInfoTable {
 			
 		
 		driver=new ChromeDriver();
+		driver.navigate().
 		driver.get("https://www.espncricinfo.com/series/sa20-2022-23-1335268/pretoria-capitals-vs-sunrisers-eastern-cape-final-1343973/full-scorecard");
 		driver.manage().window().maximize();
 		

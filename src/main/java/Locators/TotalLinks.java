@@ -1,5 +1,6 @@
 package Locators;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -18,6 +19,8 @@ public class TotalLinks {
 		driver=new ChromeDriver();
 		driver.get("https://www.amazon.in/");
 		
+	
+		
 		By links=By.tagName("a");
 		
 		List<WebElement> listofLinks=driver.findElements(links);
@@ -28,6 +31,7 @@ public class TotalLinks {
 		int count=0;
 		for(WebElement e:listofLinks) {
 			String linktext=e.getText();
+		
 			
 			if(linktext.length()>0) {
 			System.out.println(count + " : " + e.getText());

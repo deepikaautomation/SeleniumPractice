@@ -15,10 +15,11 @@ public class BrowserMultipleWindowHandles {
 	
 		driver=new ChromeDriver();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		
+		
+		String parentWindowID= driver.getWindowHandle();
+		
 	
-		
-		
-		String parentWindowID=driver.getWindowHandle();
 		
 		Thread.sleep(3000);
 		WebElement twElement=driver.findElement(By.xpath("//a[contains(@href,'twitter')]"));
@@ -30,6 +31,12 @@ public class BrowserMultipleWindowHandles {
 		fbElement.click();
 		ytElement.click();
 		liElement.click();
+		
+		
+	
+		
+		
+		
 		
 		
 		Set<String> handles=driver.getWindowHandles();

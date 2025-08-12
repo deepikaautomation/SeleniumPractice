@@ -9,7 +9,7 @@ public class PsuedoElementConcept {
 	
 	//PsuedoElement-which does not have a tag or attributes,this can be locate by usingJavaScriptExceutor
 	//convert driver into JavaScriptExecutor
-	//elements css selector should not use not xpath
+	//elements css selector ,should not use not xpath
 	
 
 	static WebDriver driver;

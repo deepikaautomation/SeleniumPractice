@@ -27,7 +27,7 @@ public class DisableButtonClick {
 		
 		Thread.sleep(5000);
 		
-		WebElement button=  driver.findElement(By.xpath("/////button[text()='Click Me!']"));
+		WebElement button=  driver.findElement(By.xpath("////button[text()='Click Me!']"));
 
 		button.click();
 	}
