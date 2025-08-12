@@ -21,7 +21,7 @@ public class ClickWhenReady {
 		driver.get("https://www.freshworks.com/");
 		
 		
-		By tryitBtn=By.linkText("Try it Free");
+		By tryitBtn=By.linkText("Try it Free   Testing Git");
 		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		//wait.until(ExpectedConditions.elementToBeClickable(tryitBtn)).click();
 		
