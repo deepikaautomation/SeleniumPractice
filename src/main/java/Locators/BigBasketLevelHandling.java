@@ -17,7 +17,7 @@ static WebDriver driver;
 		
 		driver=new ChromeDriver();
 		driver.get("https://www.bigbasket.com/");
-		
+		System.out.println("Hi BigBasket");
 		Thread.sleep(3000);
 		//WebElement l1ShopByCat=driver.findElement(By.xpath("//div[@class='relative h-full']/button[contains(@id,'headlessui-menu-button')]"));
 		
